@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Markdown → HTML</title>
+  <!-- CDNでCSSを読み込む -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-light.min.css">
+  <style>
+    body {
+      padding: 2rem;
+      background-color: #ffffff;
+    }
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+  </style>
+</head>
+<body>
+  {% if show_download_link %}
+  <p style="text-align: center; margin-top: 2rem;">
+    <a href="{{ url_for('download_html', filename=filename) }}">HTMLファイルをダウンロード</a>
+  </p>
+  {% endif %}
+  <article class="markdown-body">
+    {{ content | safe }}
+  </article>
+</body>
+</html>

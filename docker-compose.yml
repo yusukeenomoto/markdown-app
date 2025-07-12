@@ -1,0 +1,20 @@
+services:
+  flask:
+    build: .
+    container_name: flask-app
+    expose:
+      - "5000"
+    volumes:
+      - ./app:/app
+    restart: always
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-proxy
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - flask
+    restart: always
