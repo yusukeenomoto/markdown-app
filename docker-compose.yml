@@ -15,6 +15,7 @@ services:
       - "8888:8888"
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/static-site:/usr/share/nginx/html
     depends_on:
       - flask
     restart: always
