@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Markdown → HTML</title>
+  <!-- CDNでCSSを読み込む -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-light.min.css">
+  <style>
+    body {
+      padding: 2rem;
+      background-color: #ffffff;
+    }
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+  </style>
+</head>
+<body>
+  
+  <article class="markdown-body">
+    <h1>自律的情報技術学習演習</h1>
+<p>2025/07/12
+DS201132 榎本裕介</p>
+<h2>AWS Amazon EC2+Docker+Flask+nginxをつかったWebサーバの構築と公開</h2>
+<p>AWSへログイン
+省略</p>
+<p>EC2インスタンスの作成</p>
+<ul>
+<li>
+<p>リージョン: ap-northeast-1</p>
+</li>
+<li>
+<p>OS: Amazon Linux</p>
+</li>
+<li>
+<p>インスタンスタイプ: t3.micro</p>
+</li>
+<li>
+<p>キーペア: ED25519</p>
+<ul>
+<li>キーペア作成後、パーミッションを変更、~/.ssh へ格納する</li>
+<li><code>chmod 400 key-pair-name.pem</code></li>
+<li><code>mv 400 key-pair-name.pem ./ssh</code></li>
+</ul>
+</li>
+<li>
+<p>SSH: SSH トラフィックを許可 へチェックを入れる</p>
+<ul>
+<li>任意の場所（0.0.0.0/0） とした</li>
+</ul>
+</li>
+<li>
+<p>インターネットからの HTTP トラフィックを許可 へチェックを入れる</p>
+<ul>
+<li>nginxでwebサーバーを公開するため</li>
+</ul>
+</li>
+</ul>
+  </article>
+</body>
+</html>
