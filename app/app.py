@@ -64,7 +64,7 @@ def upload_file():
             with open(filepath, encoding='utf-8') as f:
                 md_text = f.read()
             md_text = insert_blank_lines_before_lists(md_text)
-            html_body = markdown(md_text, extensions=['extra', 'codehilite'])
+            html_body = markdown(md_text, extensions=['pymdownx.extra', 'pymdownx.tilde'])
 
             # 完全なHTML5ページをJinja2テンプレートから生成
             html_filename = filename.rsplit('.', 1)[0] + '.html'

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Markdown → HTML</title>
+  <!-- CDNでCSSを読み込む -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-light.min.css">
+  <style>
+    body {
+      padding: 2rem;
+      background-color: #ffffff;
+    }
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 45px;
+    }
+  </style>
+</head>
+<body>
+  
+  <article class="markdown-body">
+    <h1>サンプルMarkdownファイル</h1>
+<p>これは Markdown のサンプルです。以下に基本的な要素を含めています。</p>
+<h2>✅ 箇条書きリスト</h2>
+<ul>
+<li>
+<p>Apple</p>
+</li>
+<li>
+<p>Banana</p>
+</li>
+<li>
+<p>Cherry</p>
+</li>
+</ul>
+<h2>🔢 番号付きリスト</h2>
+<ol>
+<li>はじめに</li>
+<li>本文</li>
+<li>おわりに</li>
+</ol>
+<h2>💡 太字と斜体</h2>
+<ul>
+<li>
+<p><strong>太字のテキスト</strong></p>
+</li>
+<li>
+<p><em>斜体のテキスト</em></p>
+</li>
+<li>
+<p><del>取り消し線</del></p>
+</li>
+</ul>
+<h2>🔗 リンクと画像</h2>
+<ul>
+<li>
+<p><a href="https://www.google.com">Googleへのリンク</a></p>
+</li>
+<li>
+<p><img alt="サンプル画像" src="https://via.placeholder.com/150" /></p>
+</li>
+</ul>
+<h2>💻 コードブロック</h2>
+<h3>インラインコード</h3>
+<p>これは <code>print("Hello, World!")</code> のようなインラインコードです。</p>
+<h3>複数行コード（Python）</h3>
+<pre class="highlight"><code>def greet(name):
+    print(f"Hello, {name}!")
+
+greet("World")</code></pre>
+<h3>複数行コード（指定付き）</h3>
+<pre class="highlight"><code class="language-python">import math
+
+def area_of_circle(radius):
+    return math.pi * radius ** 2
+
+print(area_of_circle(5))</code></pre>
+<h2>✅ テーブル</h2>
+<table>
+<thead>
+<tr>
+<th>名前</th>
+<th>年齢</th>
+<th>出身地</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>田中</td>
+<td>25</td>
+<td>東京</td>
+</tr>
+<tr>
+<td>スミス</td>
+<td>30</td>
+<td>ニューヨーク</td>
+</tr>
+<tr>
+<td>ジョン</td>
+<td>28</td>
+<td>ロンドン</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>以上が Markdown の基本要素のサンプルです。</p>
+  </article>
+</body>
+</html>
