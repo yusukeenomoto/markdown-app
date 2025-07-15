@@ -104,10 +104,7 @@ DS201132 榎本裕介</p>
 <ul>
 <li><code>sudo dnf install -y docker</code></li>
 <li><code>sudo systemctl start docker</code></li>
-<li><code>sudo systemctl enable docker</code><ul>
-<li>"Hello from Docker!"などの返り値があればOK</li>
-</ul>
-</li>
+<li><code>sudo systemctl enable docker</code></li>
 <li>Docker Composeをダウンロード（V2）ローカルのDocker Desktopに合わせた<ul>
 <li><code>sudo mkdir -p /usr/local/lib/docker/cli-plugins</code></li>
 <li><code>sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64" -o /usr/local/lib/docker/cli-plugins/docker-compose</code></li>
@@ -115,7 +112,10 @@ DS201132 榎本裕介</p>
 </ul>
 </li>
 <li>以下のコマンドで動作を確認する</li>
-<li><code>sudo docker run hello-world</code></li>
+<li><code>sudo docker run hello-world</code><ul>
+<li>"Hello from Docker!"などの返り値があればOK</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>
@@ -208,6 +208,7 @@ DS201132 榎本裕介</p>
 <li>Python-Markdownライブラリを使用時、"-"などのリストへの変換がうまくいかない（"-"の前行に空行が必要）</li>
 <li>他のライブラリ（markdown2）の使用を検討したが、コードブロックへの装飾がうまくいかない可能性があったため不採用</li>
 <li>reモジュールで空行を追加する関数で対応</li>
+<li>打ち消し線対策でpymdown-extensionsを追加インストール</li>
 </ul>
 </li>
 </ul>
