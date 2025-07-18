@@ -1,32 +1,80 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>Markdown → HTML</title>
-  <!-- CDNでCSSを読み込む -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-light.min.css">
-  <style>
-    body {
-      padding: 2rem;
-      background-color: #ffffff;
-    }
-    .markdown-body {
-      box-sizing: border-box;
-      min-width: 200px;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 45px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ filename }}</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .mermaid {
+            text-align: center;
+            margin: 20px 0;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', Consolas, monospace;
+            font-size: 0.9em;
+            color: #333;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
+            font-size: inherit;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .download-link {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .download-link:hover {
+            background: #0056b3;
+        }
+    </style>
 </head>
 <body>
-  {% if show_download_link %}
-  <p style="text-align: center; margin-top: 2rem;">
-    <a href="{{ url_for('download_html', filename=filename) }}">HTMLファイルをダウンロード</a>
-  </p>
-  {% endif %}
-  <article class="markdown-body">
+    {% if show_download_link %}
+    <a href="{{ url_for('download_html', filename=filename) }}" class="download-link">HTMLをダウンロード</a>
+    {% endif %}
+    
     {{ content | safe }}
-  </article>
+    
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
 </body>
 </html>

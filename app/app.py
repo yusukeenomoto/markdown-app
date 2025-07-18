@@ -3,6 +3,8 @@ import re
 from flask import Flask, request, render_template, send_from_directory
 from werkzeug.utils import secure_filename
 from markdown import markdown
+from markdown.extensions import Extension
+from markdown.preprocessors import Preprocessor
 
 app = Flask(__name__)
 
@@ -16,6 +18,38 @@ app.config['GENERATED_FOLDER'] = GENERATED_FOLDER
 # フォルダがなければ作成
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(GENERATED_FOLDER, exist_ok=True)
+
+# Mermaid拡張クラス
+class MermaidExtension(Extension):
+    def extendMarkdown(self, md):
+        md.preprocessors.register(MermaidPreprocessor(md), 'mermaid', 175)
+
+class MermaidPreprocessor(Preprocessor):
+    def run(self, lines):
+        new_lines = []
+        in_mermaid = False
+        mermaid_content = []
+        
+        for line in lines:
+            if line.strip() == '```mermaid':
+                in_mermaid = True
+                mermaid_content = []
+            elif line.strip() == '```' and in_mermaid:
+                in_mermaid = False
+                mermaid_html = self.convert_mermaid_to_html('\n'.join(mermaid_content))
+                new_lines.append(mermaid_html)
+                mermaid_content = []
+            elif in_mermaid:
+                mermaid_content.append(line)
+            else:
+                new_lines.append(line)
+        
+        return new_lines
+    
+    def convert_mermaid_to_html(self, mermaid_code):
+        return f'''<div class="mermaid">
+{mermaid_code}
+</div>'''
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -60,11 +94,19 @@ def upload_file():
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             uploaded_file.save(filepath)
 
-            # Markdown → HTMLの本文へ変換
+            # Markdown → HTMLの本文へ変換（Mermaid対応）
             with open(filepath, encoding='utf-8') as f:
                 md_text = f.read()
             md_text = insert_blank_lines_before_lists(md_text)
-            html_body = markdown(md_text, extensions=['pymdownx.extra', 'pymdownx.tilde'])
+            
+            # Mermaid拡張を含むMarkdown変換
+            html_body = markdown(md_text, extensions=[
+                MermaidExtension(),
+                'pymdownx.extra', 
+                'pymdownx.tilde',
+                'tables',
+                'codehilite'
+            ])
 
             # 完全なHTML5ページをJinja2テンプレートから生成
             html_filename = filename.rsplit('.', 1)[0] + '.html'
@@ -85,3 +127,6 @@ def upload_file():
 @app.route('/download/<filename>')
 def download_html(filename):
     return send_from_directory(app.config['GENERATED_FOLDER'], filename, as_attachment=True)
+
+if __name__ == '__main__':
+    app.run(debug=True)

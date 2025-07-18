@@ -1,27 +1,74 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>Markdown → HTML</title>
-  <!-- CDNでCSSを読み込む -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-light.min.css">
-  <style>
-    body {
-      padding: 2rem;
-      background-color: #ffffff;
-    }
-    .markdown-body {
-      box-sizing: border-box;
-      min-width: 200px;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 45px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mau_diy_2.html</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .mermaid {
+            text-align: center;
+            margin: 20px 0;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', Consolas, monospace;
+            font-size: 0.9em;
+            color: #333;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
+            font-size: inherit;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .download-link {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .download-link:hover {
+            background: #0056b3;
+        }
+    </style>
 </head>
 <body>
-  
-  <article class="markdown-body">
+    
+    
     <h1>自律的情報技術学習演習</h1>
 <p>2025/07/13
 DS201132 榎本裕介</p>
@@ -105,7 +152,17 @@ DS201132 榎本裕介</p>
 <li><code>sudo dnf install -y docker</code></li>
 <li><code>sudo systemctl start docker</code></li>
 <li><code>sudo systemctl enable docker</code></li>
-<li>Docker Composeをダウンロード（V2）ローカルのDocker Desktopに合わせた<ul>
+<li>Docker Composeをダウンロード（V2）ローカルのDocker Desktopに合わせた</li>
+<li><a href="https://docs.docker.com/compose/install/linux/">参考サイト Fedora用</a></li>
+<li><strong>失敗</strong>パッケージでインストール<ul>
+<li><code>sudo dnf -y install dnf-plugins-core</code></li>
+<li><code>sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo</code></li>
+<li>dnf4 系</li>
+<li><code>sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</code></li>
+</ul>
+</li>
+<li><strong>成功</strong>手動でインストール </li>
+<li><a href="https://github.com/docker/compose?tab=readme-ov-file#linux">参考サイト</a><ul>
 <li><code>sudo mkdir -p /usr/local/lib/docker/cli-plugins</code></li>
 <li><code>sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64" -o /usr/local/lib/docker/cli-plugins/docker-compose</code></li>
 <li><code>sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose</code></li>
@@ -114,6 +171,10 @@ DS201132 榎本裕介</p>
 <li>以下のコマンドで動作を確認する</li>
 <li><code>sudo docker run hello-world</code><ul>
 <li>"Hello from Docker!"などの返り値があればOK</li>
+</ul>
+</li>
+<li><code>docker compose version</code><ul>
+<li>バージョンが表示されればOK</li>
 </ul>
 </li>
 </ul>
@@ -183,7 +244,7 @@ DS201132 榎本裕介</p>
 <p>Dockerの起動</p>
 <ul>
 <li><code>cd markdown-app</code></li>
-<li><code>docker compose up -d</code></li>
+<li><code>sudo docker compose up -d</code></li>
 </ul>
 </li>
 <li>
@@ -209,9 +270,13 @@ DS201132 榎本裕介</p>
 <li>他のライブラリ（markdown2）の使用を検討したが、コードブロックへの装飾がうまくいかない可能性があったため不採用</li>
 <li>reモジュールで空行を追加する関数で対応</li>
 <li>打ち消し線対策でpymdown-extensionsを追加インストール</li>
+<li>Mermaid（マーメイド記法）に対応するため、ChatGPTでクラスを作成</li>
 </ul>
 </li>
 </ul>
-  </article>
+    
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
 </body>
 </html>
