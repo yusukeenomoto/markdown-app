@@ -15,7 +15,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf.template
+      - ./nginx/conf.d/default.conf.template:/etc/nginx/conf.d/default.conf.template
       - ./nginx/start-nginx.sh:/start-nginx.sh:ro
       - ./nginx/static-site:/usr/share/nginx/html
       - ./certbot/conf:/etc/letsencrypt
